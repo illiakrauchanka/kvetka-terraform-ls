@@ -4,7 +4,7 @@ Claude Code plugin that integrates [HashiCorp terraform-ls](https://github.com/h
 
 ## What it does
 
-When editing `.tf` and `.tfvars` files, Claude Code gains:
+When editing `.tf`, `.tfvars`, and `.hcl` files, Claude Code gains:
 
 - **Go to definition** — jump to resource/module/variable definitions instantly
 - **Find references** — find all usages of a resource, variable, or module
@@ -29,8 +29,9 @@ Or install manually — see below.
 |-----------|-------------|
 | `.tf` | `terraform` |
 | `.tfvars` | `terraform-vars` |
+| `.hcl` | `terraform` |
 
-> `.hcl` files (Terragrunt, Packer) are not covered by terraform-ls — only Terraform-native files are supported.
+> `.hcl` support is best-effort — terraform-ls fully understands Terraform syntax but may not parse Terragrunt-specific blocks (`include`, `dependency`, `inputs`). Basic HCL structure, hover, and symbol navigation still work.
 
 ## Manual installation
 
@@ -86,7 +87,7 @@ Claude Code <-> LSP Client <-> terraform-ls (stdio) <-> Your .tf files
 
 ## Limitations
 
-- **No `.hcl` support** — terraform-ls handles `.tf` and `.tfvars` only ([#15785](https://github.com/anthropics/claude-code/issues/15785))
+- **`.hcl` is best-effort** — Terragrunt-specific blocks (`include`, `dependency`, `inputs`) are not understood by terraform-ls, but basic HCL parsing works
 - **Provider schemas** — `terraform init` must be run in your project for full diagnostics
 
 ## Troubleshooting

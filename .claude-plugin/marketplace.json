@@ -9,7 +9,7 @@
     {
       "name": "kvetka-terraform-ls",
       "source": "./plugins/kvetka-terraform-ls",
-      "description": "Terraform language server for Claude Code — go-to-definition, diagnostics, hover docs, and find-references for .tf and .tfvars files",
+      "description": "Terraform language server for Claude Code — go-to-definition, diagnostics, hover docs, and find-references for .tf, .tfvars, and .hcl files",
       "version": "1.0.0",
       "category": "development",
       "strict": false,
@@ -20,7 +20,8 @@
           "args": ["serve"],
           "extensionToLanguage": {
             ".tf": "terraform",
-            ".tfvars": "terraform-vars"
+            ".tfvars": "terraform-vars",
+            ".hcl": "terraform"
           }
         }
       }

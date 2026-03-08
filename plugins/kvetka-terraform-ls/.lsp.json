@@ -4,7 +4,8 @@
     "args": ["serve"],
     "extensionToLanguage": {
       ".tf": "terraform",
-      ".tfvars": "terraform-vars"
+      ".tfvars": "terraform-vars",
+      ".hcl": "terraform"
     },
     "initializationOptions": {
       "experimentalFeatures": {
