@@ -20,8 +20,14 @@
           "args": ["serve"],
           "extensionToLanguage": {
             ".tf": "terraform",
-            ".tfvars": "terraform-vars",
-            ".hcl": "terraform"
+            ".tfvars": "terraform-vars"
+          }
+        },
+        "terragrunt": {
+          "command": "terragrunt-ls",
+          "args": [],
+          "extensionToLanguage": {
+            ".hcl": "terragrunt"
           }
         }
       }

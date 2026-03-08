@@ -4,8 +4,7 @@
     "args": ["serve"],
     "extensionToLanguage": {
       ".tf": "terraform",
-      ".tfvars": "terraform-vars",
-      ".hcl": "terraform"
+      ".tfvars": "terraform-vars"
     },
     "initializationOptions": {
       "experimentalFeatures": {
@@ -14,6 +13,16 @@
       }
     },
     "startupTimeout": 15000,
+    "restartOnCrash": true,
+    "maxRestarts": 3
+  },
+  "terragrunt": {
+    "command": "terragrunt-ls",
+    "args": [],
+    "extensionToLanguage": {
+      ".hcl": "terragrunt"
+    },
+    "startupTimeout": 10000,
     "restartOnCrash": true,
     "maxRestarts": 3
   }
