@@ -1,13 +1,14 @@
 {
-  "name": "terraform-lsp",
+  "name": "kvetka-terraform-ls",
   "version": "1.0.0",
-  "description": "Terraform/Terragrunt language server plugin for Claude Code — provides go-to-definition, diagnostics, hover docs, and find-references for .tf and .tfvars files",
+  "description": "Terraform language server plugin for Claude Code — go-to-definition, diagnostics, hover docs, and find-references for .tf and .tfvars files",
   "author": {
     "name": "Illia Krauchanka",
+    "email": "ilja.kravchenko@gmail.com",
     "url": "https://github.com/illiakrauchanka"
   },
   "license": "MIT",
-  "repository": "https://github.com/illiakrauchanka/claude-code-terraform-lsp",
-  "homepage": "https://github.com/illiakrauchanka/claude-code-terraform-lsp",
+  "repository": "https://github.com/illiakrauchanka/kvetka-terraform-ls",
+  "homepage": "https://github.com/illiakrauchanka/kvetka-terraform-ls",
   "keywords": ["terraform", "terragrunt", "hcl", "iac", "lsp", "infrastructure"]
 }

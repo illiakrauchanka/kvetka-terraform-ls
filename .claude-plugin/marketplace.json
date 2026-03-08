@@ -1,14 +1,14 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "terraform-lsp",
+  "name": "kvetka-terraform-ls",
   "owner": {
     "name": "Illia Krauchanka",
     "email": "ilja.kravchenko@gmail.com"
   },
   "plugins": [
     {
-      "name": "terraform-lsp",
-      "source": "./plugins/terraform-lsp",
+      "name": "kvetka-terraform-ls",
+      "source": "./plugins/kvetka-terraform-ls",
       "description": "Terraform language server for Claude Code — go-to-definition, diagnostics, hover docs, and find-references for .tf and .tfvars files",
       "version": "1.0.0",
       "category": "development",

@@ -66,7 +66,7 @@ esac
 
 # If we got here, auto-install failed
 cat <<EOF
-[terraform-lsp plugin] terraform-ls is not installed.
+[kvetka-terraform-ls] terraform-ls is not installed.
 
 Install it manually:
 
