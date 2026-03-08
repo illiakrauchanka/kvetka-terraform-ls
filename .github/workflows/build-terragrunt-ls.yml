@@ -1,0 +1,101 @@
+name: Build terragrunt-ls
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Every Monday at 06:00 UTC
+  workflow_dispatch: # Manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - goos: darwin
+            goarch: arm64
+            name: darwin_arm64
+          - goos: darwin
+            goarch: amd64
+            name: darwin_amd64
+          - goos: linux
+            goarch: amd64
+            name: linux_amd64
+          - goos: linux
+            goarch: arm64
+            name: linux_arm64
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23"
+
+      - name: Clone terragrunt-ls
+        run: git clone --depth 1 https://github.com/gruntwork-io/terragrunt-ls.git
+
+      - name: Build
+        working-directory: terragrunt-ls
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: "0"
+          ARTIFACT_NAME: ${{ matrix.name }}
+        run: |
+          go build -ldflags="-s -w" -o terragrunt-ls .
+          tar czf "terragrunt-ls_${ARTIFACT_NAME}.tar.gz" terragrunt-ls
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: terragrunt-ls_${{ matrix.name }}
+          path: terragrunt-ls/terragrunt-ls_${{ matrix.name }}.tar.gz
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Get terragrunt-ls commit info
+        id: info
+        run: |
+          SHA=$(git ls-remote https://github.com/gruntwork-io/terragrunt-ls.git HEAD | cut -f1 | head -c 7)
+          DATE=$(date -u +%Y%m%d)
+          echo "tag=tg-ls-${DATE}-${SHA}" >> "$GITHUB_OUTPUT"
+          echo "sha=${SHA}" >> "$GITHUB_OUTPUT"
+          echo "date=${DATE}" >> "$GITHUB_OUTPUT"
+
+      - name: Check if release already exists
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.info.outputs.tag }}
+        run: |
+          if gh release view "$RELEASE_TAG" &>/dev/null; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create release
+        if: steps.check.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.info.outputs.tag }}
+          RELEASE_SHA: ${{ steps.info.outputs.sha }}
+          RELEASE_DATE: ${{ steps.info.outputs.date }}
+        run: |
+          gh release create "$RELEASE_TAG" \
+            --title "terragrunt-ls build ${RELEASE_DATE} (${RELEASE_SHA})" \
+            --notes "Automated build of [gruntwork-io/terragrunt-ls](https://github.com/gruntwork-io/terragrunt-ls) at commit ${RELEASE_SHA}.
+
+          Platforms: darwin/arm64, darwin/amd64, linux/amd64, linux/arm64
+
+          Installed automatically by the kvetka-tf-tg-ls plugin on session start." \
+            --latest \
+            artifacts/terragrunt-ls_*.tar.gz

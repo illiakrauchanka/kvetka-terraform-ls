@@ -1,5 +1,5 @@
 {
-  "name": "kvetka-terraform-ls",
+  "name": "kvetka-tf-tg-ls",
   "version": "1.0.0",
   "description": "Terraform language server plugin for Claude Code — go-to-definition, diagnostics, hover docs, and find-references for .tf and .tfvars files",
   "author": {
@@ -8,7 +8,7 @@
     "url": "https://github.com/illiakrauchanka"
   },
   "license": "MIT",
-  "repository": "https://github.com/illiakrauchanka/kvetka-terraform-ls",
-  "homepage": "https://github.com/illiakrauchanka/kvetka-terraform-ls",
+  "repository": "https://github.com/illiakrauchanka/kvetka-tf-tg-ls",
+  "homepage": "https://github.com/illiakrauchanka/kvetka-tf-tg-ls",
   "keywords": ["terraform", "terragrunt", "hcl", "iac", "lsp", "infrastructure"]
 }
