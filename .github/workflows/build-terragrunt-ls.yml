@@ -2,7 +2,7 @@ name: Build terragrunt-ls
 
 on:
   schedule:
-    - cron: "0 6 * * 1" # Every Monday at 06:00 UTC
+    - cron: "0 6 1,22 * *" # 1st and 22nd of each month (~every 3 weeks)
   workflow_dispatch: # Manual trigger
 
 permissions:
