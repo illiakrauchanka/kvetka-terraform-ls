@@ -2,7 +2,8 @@
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "terraform-lsp",
   "owner": {
-    "name": "Illia Krauchanka"
+    "name": "Illia Krauchanka",
+    "email": "ilja.kravchenko@gmail.com"
   },
   "plugins": [
     {

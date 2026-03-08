@@ -54,7 +54,7 @@ terraform-ls version
 
 **Option A — From GitHub marketplace (recommended):**
 ```
-/plugin marketplace add 01tech/claude-code-terraform-lsp
+/plugin marketplace add illiakrauchanka/claude-code-terraform-lsp
 /plugin install terraform-lsp
 ```
 
