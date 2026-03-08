@@ -1,0 +1,13 @@
+{
+  "name": "terraform-lsp",
+  "version": "1.0.0",
+  "description": "Terraform/Terragrunt language server plugin for Claude Code — provides go-to-definition, diagnostics, hover docs, and find-references for .tf and .tfvars files",
+  "author": {
+    "name": "01tech",
+    "url": "https://github.com/01tech"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/01tech/claude-code-terraform-lsp",
+  "homepage": "https://github.com/01tech/claude-code-terraform-lsp",
+  "keywords": ["terraform", "terragrunt", "hcl", "iac", "lsp", "infrastructure"]
+}

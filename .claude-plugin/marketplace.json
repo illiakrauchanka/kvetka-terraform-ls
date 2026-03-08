@@ -1,0 +1,29 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "terraform-lsp",
+  "owner": {
+    "name": "01tech",
+    "email": "dev@01tech.com"
+  },
+  "plugins": [
+    {
+      "name": "terraform-lsp",
+      "source": ".",
+      "description": "Terraform language server for Claude Code — go-to-definition, diagnostics, hover docs, and find-references for .tf and .tfvars files",
+      "version": "1.0.0",
+      "category": "development",
+      "strict": false,
+      "keywords": ["terraform", "terragrunt", "hcl", "iac", "lsp"],
+      "lspServers": {
+        "terraform": {
+          "command": "terraform-ls",
+          "args": ["serve"],
+          "extensionToLanguage": {
+            ".tf": "terraform",
+            ".tfvars": "terraform-vars"
+          }
+        }
+      }
+    }
+  ]
+}

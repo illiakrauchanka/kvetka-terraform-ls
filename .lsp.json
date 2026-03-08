@@ -1,0 +1,19 @@
+{
+  "terraform": {
+    "command": "terraform-ls",
+    "args": ["serve"],
+    "extensionToLanguage": {
+      ".tf": "terraform",
+      ".tfvars": "terraform-vars"
+    },
+    "initializationOptions": {
+      "experimentalFeatures": {
+        "prefillRequiredFields": true,
+        "validateOnSave": true
+      }
+    },
+    "startupTimeout": 15000,
+    "restartOnCrash": true,
+    "maxRestarts": 3
+  }
+}
